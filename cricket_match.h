@@ -112,6 +112,19 @@ public:
 		current_team.print_summary();
 	}
 
+	string calculate_man_of_match(){
+		int max_run_scored = max(team_1.get_team_total(), team_2.get_team_total());
+		pair<float, string> team_1_max_point_player = team_1.calculate_max_point(max_run_scored);
+		pair<float, string> team_2_max_point_player = team_2.calculate_max_point(max_run_scored);
+		if(team_1_max_point_player.first < team_2_max_point_player.first)
+		{
+			return team_2_max_point_player.second;
+		} else {
+			return team_1_max_point_player.second;
+		}
+
+	}
+
 	void print_result()
 	{
 		if(team_1.get_team_total() == team_2.get_team_total())
@@ -123,6 +136,8 @@ public:
 		} else {
 			cout<< "Team 2 won the match with "<< team_2.wickets_in_hands() << " wickets in hand\n";
 		}
+
+		cout<<"Man of the Match: " << calculate_man_of_match()<<"\n";
 	}
 
 };

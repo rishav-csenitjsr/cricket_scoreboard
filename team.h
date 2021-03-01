@@ -107,5 +107,30 @@ public:
 		cout<<"Team Extras: " << this->team_extras<<"\n";
 	}
 
+	pair<float,string> calculate_max_point(int max_run_scored_including_both_team)
+	{
+		float max_point_collected_by_player = ((float)players[0].get_run_scored()/max_run_scored_including_both_team);
+		string Player_id = players[0].get_id();
+		for(int i=1;i<players.size();i++)
+		{
+			float current_point_collected_by_player = ((float)players[i].get_run_scored()/max_run_scored_including_both_team);
+			if(current_point_collected_by_player > max_point_collected_by_player)
+			{
+				max_point_collected_by_player = current_point_collected_by_player;
+				Player_id = players[i].get_id();
+			}
+		}
+
+		return {max_point_collected_by_player, Player_id};
+	}
+
+
+	// 5/20 -> 25% (2.5)   1 point for 10% of max/min(run_scored_by_tea1_or_team2)
+	// 6/20 -> 30% (3)	
+	// 4/20 -> 20% (2)
+	// 3/20 -> 15% (1.5)
+	// 1/20 -> 5%  (0.5)
+	// 6/20 15
+
 	
 };
