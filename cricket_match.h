@@ -48,7 +48,7 @@ public:
 		}
 	}
 
-	bool process_over(int over_number, int team_id){
+	int process_over(int over_number, int team_id){
 		int ball_faced_in_a_over = 0;
 		bool is_legal_delivery;
 		int over_response = 0;  // 0 -> team doesn't got out, 1 -> team got all out, 2 -> team won
@@ -68,10 +68,11 @@ public:
 				} else if(action_on_ball_faced == "W") {
 					current_team.process_out();
 				}
-			} else if(action_on_ball_faced[0] == 'W') {
+			} else if(action_on_ball_faced[0] == 'W' && action_on_ball_faced[1] == 'd') {                    // this is the case of Wide in which no extra run is scored
 				current_team.increment_extras("1");
-			} else if(action_on_ball_faced[1] == 'W') {             // this is the case of Wide
-				current_team.increment_extras(action_on_ball_faced);
+			} else if(action_on_ball_faced.size() > 2 && action_on_ball_faced[1] == 'W' && action_on_ball_faced[2] == 'd') {             // this is the case of Wide along with extra run scored
+				current_team.increment_extras("1");
+				current_team.increment_extras(action_on_ball_faced, true);
 			} else if(action_on_ball_faced[1] == 'N') {												// this is the case of No-ball
 				current_team.increment_extras("1");
 				current_team.process_ball(action_on_ball_faced, true);

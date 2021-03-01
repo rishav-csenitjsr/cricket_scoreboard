@@ -85,10 +85,13 @@ public:
 	}
 
 
-	void increment_extras(string action_performed_on_a_ball){
+	void increment_extras(string action_performed_on_a_ball, bool whether_change_striker = false){
 		int run_scored = (char)action_performed_on_a_ball[0] - '0';
 		(this->team_extras) += run_scored;
 		(this->team_total) += run_scored;
+		if(whether_change_striker && run_scored % 2) {
+			change_striker();
+		}
 	}
 
 	void print_summary(){

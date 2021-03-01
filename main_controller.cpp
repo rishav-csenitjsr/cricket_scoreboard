@@ -1,11 +1,12 @@
 #include<bits/stdc++.h>
 #include "cricket_match.h"
 using namespace std;
+class Main {
 
+public:
+ void execute(){
 
-int main()
-{
-	int total_players_in_teams, no_of_overs, result_declared = 0;
+ 	int total_players_in_teams, no_of_overs, result_declared = 0;
 	vector<string> pid;
 	string player_id;
 	cout<<"*******************\n";
@@ -71,8 +72,14 @@ int main()
 	{
 		match.print_result();
 	}
+ }
 
+};
 
+int main()
+{
+	Main action;
+	action.execute();
 
 	return 0;
 
